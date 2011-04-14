@@ -1,7 +1,6 @@
 {
-    "base_address"     : "tcp://127.0.0.1",
-    "backend_port"     : "5555",
-    "frontend_port"    : "6666",
-    "publisher_port"   : "7777",
-    "subscriber_ports" : [ "8880" ]
+    "backend_addr"     : "tcp://127.0.0.1:5555",
+    "frontend_addr"    : "tcp://127.0.0.1:6666",
+    "publisher_addr"   : "tcp://127.0.0.1:7777",
+    "subscriber_addrs" : [ "tcp://127.0.0.1:8880" ]
 }

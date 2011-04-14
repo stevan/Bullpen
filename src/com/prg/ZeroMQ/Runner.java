@@ -44,18 +44,17 @@ public class Runner {
 
     private static void runServer ( JSONObject config ) {
 
-        JSONArray ports = (JSONArray) config.get("subscriber_ports");
-        ArrayList<String> subscriber_ports = new ArrayList<String> ();
-        for ( Object port : ports ) {
-            subscriber_ports.add( (String) port );
+        JSONArray addrs = (JSONArray) config.get("subscriber_addrs");
+        ArrayList<String> subscriber_addrs = new ArrayList<String> ();
+        for ( Object addr : addrs ) {
+            subscriber_addrs.add( (String) addr );
         }
 
         Server server = new Server (
-            (String) config.get("base_address"),
-            (String) config.get("backend_port"),
-            (String) config.get("frontend_port"),
-            (String) config.get("publisher_port"),
-            subscriber_ports
+            (String) config.get("backend_addr"),
+            (String) config.get("frontend_addr"),
+            (String) config.get("publisher_addr"),
+            subscriber_addrs
         );
         server.run();
     }
@@ -91,9 +90,8 @@ public class Runner {
         }
 
         Worker worker = new Worker (
-            (String) config.get("base_address"),
-            (String) config.get("coordinator_port"),
-            (String) config.get("publisher_port"),
+            (String) config.get("coordinator_addr"),
+            (String) config.get("publisher_addr"),
             producer
         );
         worker.run();

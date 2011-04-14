@@ -11,17 +11,16 @@ public class Worker extends Core {
 
     private Producer producer;
 
-    public Worker ( String base_addr, String coord_port, String publisher_port, Producer _producer ) {
-
-        String coord_addr     = base_addr + ':' + coord_port;
-        String publisher_addr = base_addr + ':' + publisher_port;
+    public Worker ( String coordinator_addr,
+                    String publisher_addr,
+                    Producer _producer ) {
 
         initializeContext();
 
         logger.log("welcome to worker ...");
 
-        initializeCoordinator( coord_addr );
-        logger.log("coordinator connected to " + coord_addr);
+        initializeCoordinator( coordinator_addr );
+        logger.log("coordinator connected to " + coordinator_addr);
 
         initializePublisher( publisher_addr );
         logger.log("publisher bound to " + publisher_addr);

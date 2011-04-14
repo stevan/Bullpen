@@ -12,21 +12,10 @@ public class Server extends Core {
     private ArrayList<ZMQ.Socket> subscribers = new ArrayList<ZMQ.Socket> ();
     private ZMQ.Poller poller;
 
-    public Server ( String base_addr,
-                    String backend_port,
-                    String frontend_port,
-                    String publisher_port,
-                    ArrayList<String> subscriber_ports ) {
-
-        String frontend_addr  = base_addr + ':' + frontend_port;
-        String backend_addr   = base_addr + ':' + backend_port;
-        String publisher_addr = base_addr + ':' + publisher_port;
-
-        ArrayList<String> subscriber_addrs = new ArrayList<String> ();
-
-        for ( String port : subscriber_ports ) {
-            subscriber_addrs.add( base_addr + ':' + port );
-        }
+    public Server ( String backend_addr,
+                    String frontend_addr,
+                    String publisher_addr,
+                    ArrayList<String> subscriber_addrs ) {
 
         initializeContext();
 
