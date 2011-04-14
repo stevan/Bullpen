@@ -1,0 +1,7 @@
+{
+    "base_address"     : "tcp://127.0.0.1",
+    "backend_port"     : "5555",
+    "frontend_port"    : "6666",
+    "publisher_port"   : "7777",
+    "subscriber_ports" : [ "8880" ]
+}
