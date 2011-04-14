@@ -76,7 +76,12 @@ public class Runner {
         try {
             ProducerClassLoader loader = new ProducerClassLoader ();
             Class producer_class = loader.loadProducerClass( producer_class_name );
+
             producer = (Producer) producer_class.newInstance();
+            if ( config.containsKey("producer_config") ) {
+                producer.configure( (HashMap) config.get("producer_config") );
+            }
+
         } catch ( ClassNotFoundException e ) {
             System.out.println("Could not find the producer class (" + producer_class_name + ")");
             System.out.println(e);

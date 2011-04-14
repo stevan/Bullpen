@@ -1,6 +1,7 @@
 
 package com.prg.ZeroMQ.test;
 
+import java.util.HashMap;
 import com.prg.*;
 import com.prg.ZeroMQ.*;
 
@@ -17,6 +18,12 @@ public class SimpleMessageProducer implements Producer {
     public SimpleMessageProducer ( int _num_messages ) {
         this();
         num_messages = _num_messages;
+    }
+
+    public void configure ( HashMap config ) {
+        if ( config.containsKey("num_messages") ) {
+            num_messages = ((Long) config.get("num_messages")).intValue();
+        }
     }
 
     public void initialize ( String request ) {
