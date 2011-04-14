@@ -1,7 +1,7 @@
 
 package com.prg.ZeroMQ;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.io.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
@@ -42,7 +42,7 @@ public class Runner {
         System.exit(0);
     }
 
-    private static void runServer ( JSONObject config ) {
+    private static void runServer ( HashMap config ) {
 
         JSONArray addrs = (JSONArray) config.get("subscriber_addrs");
         ArrayList<String> subscriber_addrs = new ArrayList<String> ();
@@ -68,7 +68,7 @@ public class Runner {
         }
     }
 
-    private static void runWorker ( JSONObject config ) {
+    private static void runWorker ( HashMap config ) {
 
         String producer_class_name = (String) config.get("producer_class");
 
