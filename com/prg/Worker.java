@@ -65,6 +65,8 @@ public class Worker extends Core {
                 publishMessage( subscriber_key, producer.next() );
             }
 
+            producer.reset();
+
             logger.log("publishing completed, sending empty value to subscriber ...");
             sendMessage( publisher, (subscriber_key + " ") );
 

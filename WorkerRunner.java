@@ -19,8 +19,11 @@ public class WorkerRunner {
         }
 
         public void initialize ( String request ) {
-            message_counter = 0;
             logger.log("got request=(" + request + ")");
+        }
+
+        public void reset () {
+            message_counter = 0;
         }
 
         public boolean hasNext () {

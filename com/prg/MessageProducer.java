@@ -2,9 +2,8 @@
 package com.prg;
 
 public interface MessageProducer {
-
-    void initialize ( String request );
-
-    boolean hasNext();
-    String next();
+    void    initialize ( String request );
+    void    reset      ();
+    boolean hasNext    ();
+    String  next       ();
 }
