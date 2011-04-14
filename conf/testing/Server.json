@@ -1,6 +1,12 @@
 {
-    "backend_addr"     : "tcp://127.0.0.1:5555",
-    "frontend_addr"    : "tcp://127.0.0.1:6666",
-    "publisher_addr"   : "tcp://127.0.0.1:7777",
-    "subscriber_addrs" : [ "tcp://127.0.0.1:8880" ]
+    "client" : {
+        "coordinator_addr" : "tcp://127.0.0.1:6666",
+        "publisher_addr"   : "tcp://127.0.0.1:7777",
+    },
+    "worker" : {
+        "coordinator_addr" : "tcp://127.0.0.1:5555",
+        "subscriber_addrs" : [
+            "tcp://127.0.0.1:8880"
+        ]
+    }
 }
