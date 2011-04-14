@@ -1,5 +1,5 @@
 
-package com.prg;
+package com.prg.ZeroMQ;
 
 import org.zeromq.ZMQ;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class Server extends Core {
                     String backend_port,
                     String frontend_port,
                     String publisher_port,
-                    String[] subscriber_ports ) {
+                    ArrayList<String> subscriber_ports ) {
 
         String frontend_addr  = base_addr + ':' + frontend_port;
         String backend_addr   = base_addr + ':' + backend_port;
@@ -96,7 +96,6 @@ public class Server extends Core {
 
             for ( int i = 0; i < subscribers.size(); i++ ) {
                 if (poller.pollin( 2 + i )) {
-                    logger.log("got an event from subscriber " + (2 + i) + " ...");
                     ZMQ.Socket subscriber = subscribers.get(i);
                     passThrough( subscriber, publisher );
                 }

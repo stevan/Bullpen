@@ -1,5 +1,5 @@
 
-package com.prg;
+package com.prg.ZeroMQ;
 
 import org.zeromq.ZMQ;
 import java.util.UUID;
@@ -9,9 +9,9 @@ public class Worker extends Core {
     private ZMQ.Socket coordinator;
     private ZMQ.Socket publisher;
 
-    private MessageProducer producer;
+    private Producer producer;
 
-    public Worker ( String base_addr, String coord_port, String publisher_port, MessageProducer p ) {
+    public Worker ( String base_addr, String coord_port, String publisher_port, Producer _producer ) {
 
         String coord_addr     = base_addr + ':' + coord_port;
         String publisher_addr = base_addr + ':' + publisher_port;
@@ -26,7 +26,7 @@ public class Worker extends Core {
         initializePublisher( publisher_addr );
         logger.log("publisher bound to " + publisher_addr);
 
-        producer = p;
+        producer = _producer;
     }
 
     private String generateSubscriberKey () {

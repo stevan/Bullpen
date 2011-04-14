@@ -1,6 +1,7 @@
 
-package com.prg;
+package com.prg.ZeroMQ;
 
+import com.prg.Logger;
 import org.zeromq.ZMQ;
 
 public class Core {
