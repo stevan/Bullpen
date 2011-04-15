@@ -6,35 +6,35 @@ It allows multiple Workers to be connected to a single Server, which
 itself can be connected to by multiple clients. It creates a ZeroMQ
 network that looks something like this drawing below.
 
-   +-----------+
-   |   Worker  |
-   |-----------|
-   | REP | PUB |
-   +-----+-----+  { ... $n workers }
-      ^    ^
-      |    |
-      |    +--------+
-      +-------+     |
-              |     |
-              v     v
-           +------------------+
-           | XREQ | SUB,{...} |
-           |------------------|
-           |      Server      |
-           |------------------|
-           |  XREP   |   PUB  |
-           +---------+--------+
-               ^         ^
-               |         |
-      +--------+         |
-      |     +------------+
-      |     |
-      v     v
-   +-----+-----+
-   | REQ | SUB |
-   |-----------|
-   |   Client  |
-   +-----------+  { ... $n clients }
+    +-----------+
+    |   Worker  |
+    |-----------|
+    | REP | PUB |
+    +-----+-----+  { ... $n workers }
+       ^    ^
+       |    |
+       |    +--------+
+       +-------+     |
+               |     |
+               v     v
+            +------------------+
+            | XREQ | SUB,{...} |
+            |------------------|
+            |      Server      |
+            |------------------|
+            |  XREP   |   PUB  |
+            +---------+--------+
+                ^         ^
+                |         |
+       +--------+         |
+       |     +------------+
+       |     |
+       v     v
+    +-----+-----+
+    | REQ | SUB |
+    |-----------|
+    |   Client  |
+    +-----------+  { ... $n clients }
 
 
 ## Dependencies
