@@ -42,9 +42,9 @@ The name of this module (a set of workers that publish things through a
 central hub to subscribers on the other end) is taken from the infamous
 Bullpen of Marvel Comics fame.
 
-* (1979 Bullpen)[http://www.eliotrbrown.com/1979.php]
-* (1975 Bullpen)[http://www.flickr.com/photos/26425820@N06/sets/72157626341069312/]
-* (Bullpen Bulletins)[http://en.wikipedia.org/wiki/Bullpen_Bulletins]
+* [1979 Bullpen](http://www.eliotrbrown.com/1979.php)
+* [1975 Bullpen](http://www.flickr.com/photos/26425820@N06/sets/72157626341069312/)
+* [Bullpen Bulletins](http://en.wikipedia.org/wiki/Bullpen_Bulletins)
 
 ## Dependencies
 
@@ -55,7 +55,7 @@ ZeroMQ and JSON-Simple.
 
 Copyright (C) 2011 Infinity Interactive, Inc.
 
-(http://www.iinteractive.com)[http://www.iinteractive.com]
+[http://www.iinteractive.com](http://www.iinteractive.com)
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl (Artistic License).
