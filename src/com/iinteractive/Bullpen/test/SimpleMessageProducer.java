@@ -2,19 +2,16 @@
 package com.iinteractive.Bullpen.test;
 
 import java.util.HashMap;
-import com.iinteractive.*;
+import java.util.logging.*;
 import com.iinteractive.Bullpen.*;
 
 public class SimpleMessageProducer implements Producer {
 
     private int num_messages = 100;
     private int message_counter = 0;
-    private Logger logger;
+    private Logger logger = Logger.getAnonymousLogger();
 
-    public SimpleMessageProducer () {
-        logger = new Logger ();
-    }
-
+    public SimpleMessageProducer () {}
     public SimpleMessageProducer ( int _num_messages ) {
         this();
         num_messages = _num_messages;
@@ -27,7 +24,7 @@ public class SimpleMessageProducer implements Producer {
     }
 
     public void initialize ( String request ) {
-        logger.log("got request=(" + request + ")");
+        logger.log(Level.INFO, "got request=(" + request + ")");
     }
 
     public void reset () {

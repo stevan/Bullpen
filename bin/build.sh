@@ -2,4 +2,4 @@
 
 rm -rf lib/*
 
-javac -d lib/ -cp jars/zmq.jar:jars/json_simple.jar src/com/iinteractive/*.java src/com/iinteractive/Bullpen/*.java src/com/iinteractive/Bullpen/test/*.java
+javac -d lib/ -cp jars/zmq.jar:jars/json_simple.jar src/com/iinteractive/Bullpen/*.java src/com/iinteractive/Bullpen/test/*.java

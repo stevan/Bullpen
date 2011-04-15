@@ -1,17 +1,15 @@
 
 package com.iinteractive.Bullpen;
 
-import com.iinteractive.Logger;
+import java.util.logging.*;
 import org.zeromq.ZMQ;
 
 public class Core {
 
-    protected Logger logger;
+    protected Logger logger = Logger.getLogger("com.iinteractive.Bullpen");
     protected ZMQ.Context context;
 
-    public Core () {
-        logger = new Logger ();
-    }
+    public Core () {}
 
     // context handling
 

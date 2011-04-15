@@ -2,6 +2,7 @@
 package com.iinteractive.Bullpen;
 
 import org.zeromq.ZMQ;
+import java.util.logging.*;
 import java.util.UUID;
 
 public class Worker extends Core {
@@ -17,13 +18,13 @@ public class Worker extends Core {
 
         initializeContext();
 
-        logger.log("welcome to worker ...");
+        logger.log(Level.INFO, "welcome to worker ...");
 
         initializeCoordinator( coordinator_addr );
-        logger.log("coordinator connected to " + coordinator_addr);
+        logger.log(Level.INFO, "coordinator connected to " + coordinator_addr);
 
         initializePublisher( publisher_addr );
-        logger.log("publisher bound to " + publisher_addr);
+        logger.log(Level.INFO, "publisher bound to " + publisher_addr);
 
         producer = _producer;
     }
@@ -42,7 +43,7 @@ public class Worker extends Core {
 
     private void publishMessage ( String subscriber_key, String message ) {
         String pub_msg = subscriber_key + " " + message;
-        logger.log("=> publishing message " + pub_msg);
+        logger.log(Level.INFO, "=> publishing message " + pub_msg);
         sendMessage( publisher, pub_msg );
     }
 
@@ -51,12 +52,12 @@ public class Worker extends Core {
         while (!Thread.currentThread().isInterrupted()) {
 
             String msg = receiveMessage( coordinator );
-            logger.log("<= got value=(" + msg + ") on coodinator ...");
+            logger.log(Level.INFO, "<= got value=(" + msg + ") on coodinator ...");
 
             producer.initialize( msg );
 
             String subscriber_key = generateSubscriberKey();
-            logger.log("=> sending subscriber-key=(" + subscriber_key + ")");
+            logger.log(Level.INFO, "=> sending subscriber-key=(" + subscriber_key + ")");
 
             sendMessage( coordinator, subscriber_key );
 
@@ -66,7 +67,7 @@ public class Worker extends Core {
 
             producer.reset();
 
-            logger.log("publishing completed, sending empty value to subscriber ...");
+            logger.log(Level.INFO, "publishing completed, sending empty value to subscriber ...");
             sendMessage( publisher, (subscriber_key + " ") );
 
         }

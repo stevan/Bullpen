@@ -2,6 +2,7 @@
 package com.iinteractive.Bullpen;
 
 import org.zeromq.ZMQ;
+import java.util.logging.*;
 import java.util.ArrayList;
 
 public class Server extends Core {
@@ -19,22 +20,22 @@ public class Server extends Core {
 
         initializeContext();
 
-        logger.log("welcome to server ...");
+        logger.log(Level.INFO, "welcome to server ...");
 
         initializeFrontend( frontend_addr );
-        logger.log("frontend connected to " + frontend_addr);
+        logger.log(Level.INFO, "frontend connected to " + frontend_addr);
 
         initializeBackend( backend_addr );
-        logger.log("backend connected to " + backend_addr);
+        logger.log(Level.INFO, "backend connected to " + backend_addr);
 
         initializePublisher( publisher_addr );
-        logger.log("publisher bound to " + publisher_addr);
+        logger.log(Level.INFO, "publisher bound to " + publisher_addr);
 
         initializeSubscribers( subscriber_addrs );
-        logger.log(subscribers.size() + " subscribers bound to: " + subscriber_addrs.toString() );
+        logger.log(Level.INFO, subscribers.size() + " subscribers bound to: " + subscriber_addrs.toString() );
 
         initializePoller();
-        logger.log("Poller initialized ...");
+        logger.log(Level.INFO, "Poller initialized ...");
     }
 
     private void initializeFrontend ( String address ) {
