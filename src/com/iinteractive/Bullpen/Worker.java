@@ -1,5 +1,5 @@
 
-package com.prg.ZeroMQ;
+package com.iinteractive.Bullpen;
 
 import org.zeromq.ZMQ;
 import java.util.UUID;

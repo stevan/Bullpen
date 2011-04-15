@@ -1,5 +1,5 @@
 
-package com.prg;
+package com.iinteractive;
 
 public class Logger {
 

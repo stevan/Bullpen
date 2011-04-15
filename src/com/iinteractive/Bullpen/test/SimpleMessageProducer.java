@@ -1,9 +1,9 @@
 
-package com.prg.ZeroMQ.test;
+package com.iinteractive.Bullpen.test;
 
 import java.util.HashMap;
-import com.prg.*;
-import com.prg.ZeroMQ.*;
+import com.iinteractive.*;
+import com.iinteractive.Bullpen.*;
 
 public class SimpleMessageProducer implements Producer {
 

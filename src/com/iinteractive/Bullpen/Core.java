@@ -1,7 +1,7 @@
 
-package com.prg.ZeroMQ;
+package com.iinteractive.Bullpen;
 
-import com.prg.Logger;
+import com.iinteractive.Logger;
 import org.zeromq.ZMQ;
 
 public class Core {

@@ -1,7 +1,7 @@
 {
     "coordinator_addr" : "tcp://127.0.0.1:5555",
     "publisher_addr"   : "tcp://127.0.0.1:8880",
-    "producer_class"   : "com.prg.ZeroMQ.test.SimpleMessageProducer",
+    "producer_class"   : "com.iinteractive.Bullpen.test.SimpleMessageProducer",
     "producer_config"  : {
         "num_messages" : 50
     }
