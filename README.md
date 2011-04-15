@@ -36,6 +36,15 @@ network that looks something like this drawing below.
     |   Client  |
     +-----------+  { ... $n clients }
 
+## See Also
+
+The name of this module (a set of workers that publish things through a
+central hub to subscribers on the other end) is taken from the infamous
+Bullpen of Marvel Comics fame.
+
+* http://www.eliotrbrown.com/1979.php
+* http://www.flickr.com/photos/26425820@N06/sets/72157626341069312/
+* http://en.wikipedia.org/wiki/Bullpen_Bulletins
 
 ## Dependencies
 
