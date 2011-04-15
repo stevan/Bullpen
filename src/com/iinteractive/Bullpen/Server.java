@@ -77,17 +77,28 @@ public class Server extends Core {
             poller.poll();
 
             if (poller.pollin(0)) {
+                logger.log(Level.INFO, "got event on frontend channel");
                 passThrough( frontend, backend );
             }
 
             if (poller.pollin(1)) {
+                logger.log(Level.INFO, "got event on backend channel");
                 passThrough( backend, frontend );
             }
 
             for ( int i = 0; i < subscribers.size(); i++ ) {
                 if (poller.pollin( 2 + i )) {
+                    logger.log(Level.INFO, "got event on a subscriber channel");
                     ZMQ.Socket subscriber = subscribers.get(i);
-                    passThrough( subscriber, publisher );
+                    // NOTE:
+                    // don't use the pass-through here
+                    // it kinda seems to stall on the
+                    // SENDMORE stuff, and we know that
+                    // these are just simple one level
+                    // messages anyway.
+                    // - SL
+                    byte[] message = subscriber.recv(0);
+                    publisher.send( message, 0 );
                 }
             }
         }
