@@ -65,7 +65,10 @@ public class Worker extends Core {
                     publishMessage( subscriber_key, producer.next() );
                 }
             } catch ( Exception e ) {
-                publishMessage( subscriber_key, e.toString() );
+                publishMessage(
+                    subscriber_key,
+                    producer.formatError( e )
+                );
             } finally {
                 producer.reset();
             }

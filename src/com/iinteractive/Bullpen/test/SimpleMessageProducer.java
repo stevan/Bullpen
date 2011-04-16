@@ -39,4 +39,8 @@ public class SimpleMessageProducer implements Producer {
         message_counter++;
         return "[" + message_counter + "]";
     }
+
+    public String formatError ( Exception e ) {
+        return e.toString();
+    }
 }
