@@ -54,18 +54,21 @@ public class Worker extends Core {
             String msg = receiveMessage( coordinator );
             logger.log(Level.INFO, "<= got value=(" + msg + ") on coodinator ...");
 
-            producer.initialize( msg );
-
             String subscriber_key = generateSubscriberKey();
             logger.log(Level.INFO, "=> sending subscriber-key=(" + subscriber_key + ")");
 
             sendMessage( coordinator, subscriber_key );
 
-            while ( producer.hasNext() ) {
-                publishMessage( subscriber_key, producer.next() );
+            try {
+                producer.initialize( msg );
+                while ( producer.hasNext() ) {
+                    publishMessage( subscriber_key, producer.next() );
+                }
+            } catch ( Exception e ) {
+                publishMessage( subscriber_key, e.toString() );
+            } finally {
+                producer.reset();
             }
-
-            producer.reset();
 
             logger.log(Level.INFO, "publishing completed, sending empty value to subscriber ...");
             sendMessage( publisher, (subscriber_key + " ") );

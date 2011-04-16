@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 public interface Producer {
     void    configure ( HashMap config );
-    void    initialize ( String request );
+    void    initialize ( String request ) throws Exception;
     void    reset      ();
-    boolean hasNext    ();
-    String  next       ();
+    boolean hasNext    () throws Exception;
+    String  next       () throws Exception;
 }
