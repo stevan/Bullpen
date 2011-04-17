@@ -44,19 +44,19 @@ public class Runner {
 
     private static void runServer ( HashMap config ) {
 
-        HashMap client_config = (HashMap) config.get("client");
-        HashMap worker_config = (HashMap) config.get("worker");
+        HashMap frontend_config = (HashMap) config.get("frontend");
+        HashMap backend_config = (HashMap) config.get("backend");
 
-        ArrayList addrs = (ArrayList) worker_config.get("subscriber_addrs");
+        ArrayList addrs = (ArrayList) backend_config.get("subscriber_addrs");
         ArrayList<String> subscriber_addrs = new ArrayList<String> ();
         for ( Object addr : addrs ) {
             subscriber_addrs.add( (String) addr );
         }
 
         Server server = new Server (
-            (String) worker_config.get("coordinator_addr"),
-            (String) client_config.get("coordinator_addr"),
-            (String) client_config.get("publisher_addr"),
+            (String) backend_config.get("coordinator_addr"),
+            (String) frontend_config.get("coordinator_addr"),
+            (String) frontend_config.get("publisher_addr"),
             subscriber_addrs
         );
         server.run();
