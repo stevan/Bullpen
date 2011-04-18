@@ -1,5 +1,4 @@
-Bullpen
-=======
+# Bullpen
 
 Bullpen is a very simple, but configurable Worker Queue based on ZeroMQ.
 It allows multiple Workers to be connected to a single Server, which
@@ -38,9 +37,13 @@ network that looks something like this drawing below.
 
 ## See Also
 
+[Bullpen-Client-Perl](https://github.com/stevan/Bullpen-Client-Perl)
+
+## The Name
+
 The name of this module (a set of workers that publish things through a
 central hub to subscribers on the other end) is taken from the infamous
-Bullpen of Marvel Comics fame.
+Bullpen of Marvel Comics.
 
 * [1979 Bullpen](http://www.eliotrbrown.com/1979.php)
 * [1975 Bullpen](http://www.flickr.com/photos/26425820@N06/sets/72157626341069312/)
