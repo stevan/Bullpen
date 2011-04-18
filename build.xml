@@ -8,7 +8,7 @@
     <property name="build" location="build"/>
     <property name="dist"  location="dist"/>
 
-    <target name="compile" description="compile the source">
+    <target name="compile" depends="clean" description="compile the source">
         <mkdir dir="${build}"/>
         <javac srcdir="${src}" destdir="${build}" includeantruntime="false">
             <classpath>
@@ -22,7 +22,7 @@
     <target name="dist" depends="compile" description="generate the distribution">
         <mkdir dir="${dist}"/>
         <jar jarfile="${dist}/bullpen.jar" basedir="${build}"/>
-      </target>
+    </target>
 
     <target name="clean" description="clean up" >
         <delete dir="${build}"/>
