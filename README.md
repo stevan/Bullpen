@@ -51,7 +51,7 @@ Bullpen of Marvel Comics.
 
 ## Dependencies
 
-See the README.md in the jars/ directory, but basically we depend on
+See the README.md in the lib/ directory, but basically we depend on
 ZeroMQ and JSON-Simple.
 
 ## Copyright and License
