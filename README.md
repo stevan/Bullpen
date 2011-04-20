@@ -35,6 +35,14 @@ network that looks something like this drawing below.
     |   Client  |
     +-----------+  { ... $n clients }
 
+## Logging
+
+Note that we use the java.util.logging package for this, so you can configure
+the logging output as needed. There is an example .properties file in the
+conf/logging/ directory. Just pass in the value on the command line like this:
+
+    java -Djava.util.logging.config.file=my-logging.properties ...
+
 ## See Also
 
 [Bullpen-Client-Perl](https://github.com/stevan/Bullpen-Client-Perl)
