@@ -21,7 +21,7 @@ public class Runner {
         String which_type  = args[0];
         String config_file = args[1];
 
-        if (which_type != "Server" || which_type != "Worker") {
+        if ( !which_type.equals("Server") && !which_type.equals("Worker") ) {
             System.out.println("You must specify either 'Server' or 'Worker' for the type of device to run.");
             System.out.println("Unknown device : '" + which_type + "'");
             System.exit(1);
