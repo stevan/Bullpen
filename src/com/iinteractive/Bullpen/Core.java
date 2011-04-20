@@ -6,7 +6,7 @@ import org.zeromq.ZMQ;
 
 public class Core {
 
-    protected Logger logger = Logger.getLogger("com.iinteractive.Bullpen");
+    protected Logger logger = Logger.getLogger( Core.class.getPackage().getName() );
     protected ZMQ.Context context;
 
     public Core () {}

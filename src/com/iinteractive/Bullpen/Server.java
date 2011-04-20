@@ -20,16 +20,16 @@ public class Server extends Core {
 
         initializeContext();
 
-        logger.log(Level.INFO, "welcome to server ...");
+        logger.log(Level.INFO, "Welcome to server ...");
 
         initializeFrontend( frontend_addr );
-        logger.log(Level.INFO, "frontend connected to " + frontend_addr);
+        logger.log(Level.INFO, "Frontend connected to " + frontend_addr);
 
         initializeBackend( backend_addr );
-        logger.log(Level.INFO, "backend connected to " + backend_addr);
+        logger.log(Level.INFO, "Backend connected to " + backend_addr);
 
         initializePublisher( publisher_addr );
-        logger.log(Level.INFO, "publisher bound to " + publisher_addr);
+        logger.log(Level.INFO, "Publisher bound to " + publisher_addr);
 
         initializeSubscribers( subscriber_addrs );
         logger.log(Level.INFO, subscribers.size() + " subscribers bound to: " + subscriber_addrs.toString() );
