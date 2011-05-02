@@ -10,7 +10,7 @@ public class Server extends Core {
     private ZMQ.Socket frontend;
     private ZMQ.Socket backend;
     private ZMQ.Socket publisher;
-    private ArrayList<ZMQ.Socket> subscribers = new ArrayList<ZMQ.Socket> ();
+    private ZMQ.Socket subscriber;
     private ZMQ.Poller poller;
 
     public Server ( String backend_addr,
@@ -32,7 +32,7 @@ public class Server extends Core {
         logger.log(Level.INFO, "Publisher bound to " + publisher_addr);
 
         initializeSubscribers( subscriber_addrs );
-        logger.log(Level.INFO, subscribers.size() + " subscribers bound to: " + subscriber_addrs.toString() );
+        logger.log(Level.INFO, subscriber_addrs.size() + " subscribers bound to: " + subscriber_addrs.toString() );
 
         initializePoller();
         logger.log(Level.INFO, "Poller initialized ...");
@@ -51,55 +51,46 @@ public class Server extends Core {
     }
 
     private void initializeSubscribers ( ArrayList<String> addresses ) {
+        subscriber = context.socket( ZMQ.SUB );
         for ( String address : addresses ) {
-            ZMQ.Socket socket = initializeSocket( ZMQ.SUB, address );
-
-            // subscribe to everything ...
-            socket.subscribe("".getBytes());
-
-            subscribers.add( socket );
+            subscriber.connect( address );
         }
+        // subscribe to everything ...
+        subscriber.subscribe("".getBytes());
     }
 
     private void initializePoller () {
         poller = context.poller(2);
-
-        poller.register(frontend, ZMQ.Poller.POLLIN);
-        poller.register(backend, ZMQ.Poller.POLLIN);
-
-        for ( ZMQ.Socket subscriber : subscribers ) {
-            poller.register( subscriber, ZMQ.Poller.POLLIN );
-        }
+        poller.register( frontend,   ZMQ.Poller.POLLIN );
+        poller.register( backend,    ZMQ.Poller.POLLIN );
+        poller.register( subscriber, ZMQ.Poller.POLLIN );
     }
 
     public void run () {
         while (!Thread.currentThread().isInterrupted()) {
             poller.poll();
 
-            if (poller.pollin(0)) {
+            if (poller.pollin( 0 )) {
                 logger.log(Level.INFO, "got event on frontend channel");
                 passThrough( frontend, backend );
             }
 
-            if (poller.pollin(1)) {
+            if (poller.pollin( 1 )) {
                 logger.log(Level.INFO, "got event on backend channel");
                 passThrough( backend, frontend );
             }
 
-            for ( int i = 0; i < subscribers.size(); i++ ) {
-                if (poller.pollin( 2 + i )) {
-                    logger.log(Level.INFO, "got event on a subscriber channel");
-                    ZMQ.Socket subscriber = subscribers.get(i);
-                    // NOTE:
-                    // don't use the pass-through here
-                    // it kinda seems to stall on the
-                    // SENDMORE stuff, and we know that
-                    // these are just simple one level
-                    // messages anyway.
-                    // - SL
-                    byte[] message = subscriber.recv(0);
-                    publisher.send( message, 0 );
-                }
+            if (poller.pollin( 2 )) {
+                logger.log(Level.INFO, "got event on a subscriber channel");
+                // NOTE:
+                // don't use the pass-through here
+                // it kinda seems to stall on the
+                // SENDMORE stuff, and we know that
+                // these are just simple one level
+                // messages anyway.
+                // - SL
+                byte[] message = subscriber.recv( 0 );
+                publisher.send( message, 0 );
             }
         }
     }
